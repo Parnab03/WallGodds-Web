@@ -1,10 +1,10 @@
 import Styles from "./Footer.module.css";
-import { MdMailOutline } from "react-icons/md";
+import { SiGmail } from "react-icons/si";
 import { FaGithub, FaLinkedin, FaDiscord } from "react-icons/fa";
 
 export const Footer = () => {
     const socialLinks = [
-        {name: "Email", url: "mailto:wallgodds@gmail.com", icon: <MdMailOutline />},
+        {name: "Email", url: "mailto:wallgodds@gmail.com", icon: <SiGmail />},
         {name: "GitHub", url: "https://github.com/WallGodds", icon: <FaGithub />},
         {name: "LinkedIn", url: "https://www.linkedin.com/company/wallgodds", icon: <FaLinkedin />},
         {name: "Discord", url: "https://discord.gg/kTQ5KWANp8", icon: <FaDiscord />},
