@@ -17,7 +17,6 @@
   display: block;
 }
 
-/* ✅ ORIGINAL FLEX CONTAINER BACK */
 .container {
   display: flex;
   flex-direction: column;
