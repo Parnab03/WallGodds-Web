@@ -139,7 +139,6 @@ const Gallery = () => {
         </div>
 
         <div className={Styles.galleryScrollArea}>
-          {activeDevice === "desktop" && <Desktop />}
           {activeDevice === "mobile" && <Mobile />}
           
           <Routes>
