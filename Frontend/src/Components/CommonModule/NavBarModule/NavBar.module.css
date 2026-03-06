@@ -539,14 +539,14 @@
     display: flex;
     align-items: center;
     padding: 0 !important;
-    margin: 0 !important;
+    margin: 0 0 0 0.25rem !important; /* small left gap from navbar edge */
   }
 
   .logo img {
     height: 1.3rem !important;
     width: auto !important;
     margin: 0 !important;
-    padding-left: 0.42rem;
+    padding: 0 !important; /* keep logo tight; gap comes from .logo margin */
     display: block;
     transition: 0.1s ease;
   }
