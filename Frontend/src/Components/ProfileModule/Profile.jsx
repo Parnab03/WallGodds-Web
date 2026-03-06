@@ -48,6 +48,20 @@ const Profile = () => {
     ];
     const remainingTagSlots = 3 - selectedTags.length;
 
+    // Recalculate width when fonts are fully loaded
+    useEffect(() => {
+        document.fonts.ready.then(() => {
+            if (inputRef.current) {
+                inputRef.current.style.width = "0px";
+                inputRef.current.style.width = inputRef.current.scrollWidth + "px";
+            }
+            if (usernameRef.current) {
+                usernameRef.current.style.width = "0px";
+                usernameRef.current.style.width = (usernameRef.current.scrollWidth + 4) + "px";
+            }
+        });
+    }, []);
+
     // Auto resize input to text width
     useEffect(() => {
         //For name
@@ -72,8 +86,21 @@ const Profile = () => {
         }, 0);
     };
 
-    const handleBlur = () => {
+    const handleBlur = (e) => {
         setIsEditing(false);
+
+        // Manually reset scroll position to the start for Firefox
+        if (e.target) {
+            e.target.scrollLeft = 0;
+        }
+    };
+
+    const handleUsernameBlur = (e) => {
+        setIsEditingUsername(false);
+        // Manually reset scroll position for the username input
+        if (e.target) {
+            e.target.scrollLeft = 0;
+        }
     };
 
     useEffect(() => {
@@ -191,7 +218,7 @@ const Profile = () => {
 
                             <div className={Styles.profilePic}>
                                 <div className={Styles.profilePhoto}>
-                                    <img src={imagePreview || ''} onChange={handleImageFileChange} alt="Profile" />
+                                    <img src={imagePreview || '/profile.jpg'} onChange={handleImageFileChange} alt="Profile" />
                                     <input
                                         type="file"
                                         accept="image/*"
@@ -297,7 +324,7 @@ const Profile = () => {
                                     <div className={Styles.usernameContainer}>
                                         <button className={Styles.userEditBtn} onClick={() => setIsEditingUsername(!isEditingUsername)}>
 
-                                            <svg width="13" height="13" viewBox="0 0 13 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <svg width="14" height="14" viewBox="0 0 13 13" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                 <path d="M7.48049 1.53735C7.91519 1.06638 8.13254 0.8309 8.36348 0.693542C8.92074 0.36211 9.60698 0.351802 10.1736 0.666353C10.4084 0.796717 10.6324 1.02557 11.0804 1.48328C11.5285 1.94098 11.7525 2.16984 11.8801 2.40971C12.1881 2.98849 12.178 3.68946 11.8535 4.25874C11.7191 4.49468 11.4885 4.71671 11.0275 5.16075L5.54202 10.4442C4.66835 11.2857 4.2315 11.7065 3.68554 11.9197C3.13957 12.1329 2.53937 12.1172 1.33896 12.0859L1.17564 12.0816C0.810198 12.072 0.627475 12.0672 0.521262 11.9467C0.415042 11.8262 0.429544 11.64 0.458547 11.2678L0.474297 11.0657C0.555923 10.0179 0.596733 9.49404 0.801332 9.02312C1.00592 8.55219 1.35884 8.16988 2.06467 7.40513L7.48049 1.53735Z" stroke="#606060" strokeWidth="0.875" strokeLinejoin="round" />
                                                 <path d="M6.85303 1.60435L10.9364 5.68769" stroke="#606060" strokeWidth="0.875" strokeLinejoin="round" />
                                                 <path d="M7.43677 12.1042H12.1034" stroke="#606060" strokeWidth="0.875" strokeLinecap="round" strokeLinejoin="round" />
@@ -311,7 +338,7 @@ const Profile = () => {
                                             value={username}
                                             onChange={(e) => setUsername(e.target.value)}
                                             readOnly={!isEditingUsername}
-                                            onBlur={() => setIsEditingUsername(false)}
+                                            onBlur={handleUsernameBlur}
                                             className={Styles.usernameInput}
                                         />
                                     </div>
