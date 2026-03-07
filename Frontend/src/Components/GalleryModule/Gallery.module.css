@@ -196,7 +196,7 @@
 }
 
 /* ================= TABLET ONLY ================= */
-@media (min-width: 701px) and (max-width: 1124px) {
+@media (min-width: 701px) and (max-width: 1195px) {
   .container {
     overflow: hidden;
     display: flex;
@@ -205,10 +205,10 @@
   }
 
   .temp {
-    width: 88%;
+    width: 650px;
     margin-bottom: 1.6rem;
     align-items: flex-start;
-    padding: 0 0.75rem;
+    padding: 0 2px;
     box-sizing: border-box;
   }
 }
